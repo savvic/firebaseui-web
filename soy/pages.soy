@@ -27,7 +27,7 @@
     <form onsubmit="return false;">
       <div class="{css firebaseui-card-header}">
         <h1 class="{css firebaseui-title}">
-          {msg desc="Header of the email/password sign-in page."}Sign in with email{/msg}
+          {msg desc="Header of the email/password sign-in page."}Zaloguj się przez Email{/msg}
         </h1>
       </div>
       <div class="{css firebaseui-card-content}">
@@ -54,7 +54,7 @@
       {css firebaseui-container} {css firebaseui-id-page-password-sign-in}">
     <form onsubmit="return false;">
       <div class="{css firebaseui-card-header}">
-        <h1 class="{css firebaseui-title}">{msg desc="Header of a sign-in page."}Sign in{/msg}</h1>
+        <h1 class="{css firebaseui-title}">{msg desc="Header of a sign-in page."}Zaloguj{/msg}</h1>
       </div>
       <div class="{css firebaseui-card-content}">
         {call firebaseui.auth.soy2.element.email data="all" /}
@@ -85,7 +85,7 @@
     <form onsubmit="return false;">
       <div class="{css firebaseui-card-header}">
         <h1 class="{css firebaseui-title}">
-          {msg desc="Header of a sign-up page."}Create account{/msg}
+          {msg desc="Header of a sign-up page."}Utwórz konto{/msg}
         </h1>
       </div>
       <div class="{css firebaseui-card-content}">
@@ -122,12 +122,13 @@
     <form onsubmit="return false;">
       <div class="{css firebaseui-card-header}">
         <h1 class="{css firebaseui-title}">
-          {msg desc="Header of a password recovery page."}Recover password{/msg}
+          {msg desc="Header of a password recovery page."}Odzyskaj hasło{/msg}
         </h1>
       </div>
       <div class="{css firebaseui-card-content}">
         <p class="{css firebaseui-text}">
           {msg desc="Information on how the user resets their password."}
+            Na ten e-mail, zostaną wysłane instrukcje, jak zresetować hasło
             Get instructions sent to this email that explain how to reset your password
           {/msg}
         </p>
@@ -141,7 +142,7 @@
           {call firebaseui.auth.soy2.element.submitButton}
             {param label kind="text"}
               {msg desc="The button that sends a password recovery email."}
-                Send
+                Wyślij
               {/msg}
             {/param}
           {/call}
@@ -163,14 +164,14 @@
     <div class="{css firebaseui-card-header}">
       <h1 class="{css firebaseui-title}">
         {msg desc="Header of a notice page when the password recovery email has been sent."}
-          Check your email
+          Sprawdź swój email
         {/msg}
       </h1>
     </div>
     <div class="{css firebaseui-card-content}">
       <p class="{css firebaseui-text}">
         {msg desc="Detailed info of a notice page when the password recovery email has been sent."}
-          Follow the instructions sent to <strong>{$email}</strong> to recover your password
+          Postępuj zgodnie z instrukcjami wysłanymi do <strong>{$email}</strong> aby odzyskać hasło
         {/msg}
       </p>
     </div>
@@ -180,7 +181,7 @@
           {call firebaseui.auth.soy2.element.submitButton}
             {param label kind="text"}
               {msg desc="Label of a button that finishes the password recovery flow."}
-                Done
+                OK
               {/msg}
             {/param}
           {/call}
@@ -215,19 +216,18 @@
       {css firebaseui-container} {css firebaseui-id-page-password-linking}">
     <form onsubmit="return false;">
       <div class="{css firebaseui-card-header}">
-        <h1 class="{css firebaseui-title}">{msg desc="Header of a sign-in page."}Sign in{/msg}</h1>
+        <h1 class="{css firebaseui-title}">{msg desc="Header of a sign-in page."}Zaloguj się{/msg}</h1>
       </div>
       <div class="{css firebaseui-card-content}">
         <h2 class="{css firebaseui-subtitle}">
           {msg desc="Header of a page displayed when the user has signed in before with an email and
               password account."}
-            You already have an account
+            Posiadasz już konto
           {/msg}
         </h2>
         <p class="{css firebaseui-text}">
           {msg desc="Message that reminds the user the previous and current sign-in status."}
-            You’ve already used <strong>{$email}</strong> to sign in. Enter your password for that
-            account.
+            Ten email <strong>{$email}</strong> jest już powiązany z kontem. Wprowadź hasło dla tego konta.
           {/msg}
         </p>
         {call firebaseui.auth.soy2.element.password /}
@@ -254,19 +254,18 @@
       {css firebaseui-container} {css firebaseui-id-page-federated-linking}">
     <form onsubmit="return false;">
       <div class="{css firebaseui-card-header}">
-        <h1 class="{css firebaseui-title}">{msg desc="Header of a sign-in page."}Sign in{/msg}</h1>
+        <h1 class="{css firebaseui-title}">{msg desc="Header of a sign-in page."}Zaloguj się{/msg}</h1>
       </div>
       <div class="{css firebaseui-card-content}">
         <h2 class="{css firebaseui-subtitle}">
           {msg desc="Header of a page displayed when the user has signed in before with the provided
               email."}
-            You already have an account
+            Posiadasz już konto
           {/msg}
         </h2>
         <p class="{css firebaseui-text}">
           {msg desc="Message that reminds the user the previous sign-in status."}
-            You’ve already used <strong>{$email}</strong>. Sign in with {$idpDisplayName} to
-            continue.
+            Użyłeś już ten email <strong>{$email}</strong>. Zaloguj się jako {$idpDisplayName} aby kontynuować.
           {/msg}
         </p>
       </div>
@@ -276,7 +275,7 @@
             {param label kind="text"}
               {msg desc="Label of a button that signs in a user with a federated identity provider
                   (e.g. Sign in with Google, Sign in with Facebook)."}
-                Sign in with {$idpDisplayName}
+                Zaloguj się z {$idpDisplayName}
               {/msg}
             {/param}
           {/call}
@@ -298,7 +297,7 @@
       <div class="{css firebaseui-card-header}">
         <h1 class="{css firebaseui-title}">
           {msg desc="Header of a page where the user can reset their password."}
-            Reset your password
+            Zresetuj swoje hasło
           {/msg}
         </h1>
       </div>
@@ -306,13 +305,13 @@
         {msg desc="Tell the user the email of the account for which the password is being
             changed."}
           <p class="{css firebaseui-text}">
-            for <strong>{$email}</strong>
+            dla <strong>{$email}</strong>
           </p>
         {/msg}
         {call firebaseui.auth.soy2.element.newPassword data="all"}
           {param label kind="text"}
             {msg desc="Label for the password input field in the Reset Password page."}
-              New password
+              Nowe hasło
             {/msg}
           {/param}
         {/call}
@@ -336,13 +335,13 @@
       {css firebaseui-container} {css firebaseui-id-page-password-reset-success}">
     <div class="{css firebaseui-card-header}">
       <h1 class="{css firebaseui-title}">
-        {msg desc="Header of a successful password change notice page"}Password changed{/msg}
+        {msg desc="Header of a successful password change notice page"}Hasło zmienione{/msg}
       </h1>
     </div>
     <div class="{css firebaseui-card-content}">
       <p class="{css firebaseui-text}">
         {msg desc="Detailed info of a notice page that password reset succeeded."}
-          You can now sign in with your new password
+          Możesz się teraz zalogować używając nowego hasła
         {/msg}
       </p>
     </div>
@@ -367,14 +366,14 @@
     <div class="{css firebaseui-card-header}">
       <h1 class="{css firebaseui-title}">
         {msg desc="Header of a password reset failure notice page"}
-          Try resetting your password again
+          Spróbuj zresetować hasło raz jeszcze
         {/msg}
       </h1>
     </div>
     <div class="{css firebaseui-card-content}">
       <p class="{css firebaseui-text}">
         {msg desc="Detailed info of a notice page that password reset failed."}
-          Your request to reset your password has expired or the link has already been used
+          Twoja prośba o zresetowanie hasła wygasła lub link został już użyty
         {/msg}
       </p>
     </div>
@@ -401,24 +400,24 @@
       <div class="{css firebaseui-card-header}">
         <h1 class="{css firebaseui-title}">
           {msg desc="Header of a page notifying that an email change request has been revoked"}
-            Updated email address
+            Zaktualizuj adres e-mail
           {/msg}
         </h1>
       </div>
       <div class="{css firebaseui-card-content}">
         <p class="{css firebaseui-text}">
           {msg desc="Detailed info of a notice page that an email change request has been revoked."}
-            Your sign-in email address has been changed back to <strong>{$email}</strong>.
+            Twój adres poczty elektronicznej został zmieniony z powrotem na <strong>{$email}</strong>.
           {/msg}
         </p>
         <p class="{css firebaseui-text}">
           {msg desc="Message that explains to the user that they can reset their password if they
                suspect someone has accessed their account."}
-            If you didn’t ask to change your sign-in email, it’s possible someone is trying to
-            access your account and you should <a
+            Jeśli nie prosiłeś o zmianę adresu e-mail, może ktoś próbuje uzyskać dostęp do Twojego konta.
+            Powinieneś <a
                 class="{css firebaseui-link} {css firebaseui-id-reset-password-link}"
                 href="javascript:void(0)">
-              change your password right away
+              natychmiast zmienić Swoje aktualne hasło.
             </a>.
           {/msg}
         </p>
@@ -445,17 +444,17 @@
     <div class="{css firebaseui-card-header}">
       <h1 class="{css firebaseui-title}">
         {msg desc="Header of a page notifying that an email change revocation request has failed"}
-          Unable to update your email address
+          Nie można zaktualizować Twojego adresu e-mail
         {/msg}
       </h1>
     </div>
     <div class="{css firebaseui-card-content}">
       {msg desc="Detailed info of a notice page that email change revocation has failed."}
         <p class="{css firebaseui-text}">
-          There was a problem changing your sign-in email back.
+          Wystąpił problem podczas zmiany e-maila do logowania.
         </p>
         <p class="{css firebaseui-text}">
-          If you try again and still can’t reset your email, try asking your administrator for help.
+          Jeśli spróbujesz ponownie i nadal nie będziesz mogł zresetować swojego e-maila, spróbuj poprosić administratora o pomoc.
         </p>
       {/msg}
     </div>
@@ -480,14 +479,14 @@
     <div class="{css firebaseui-card-header}">
       <h1 class="{css firebaseui-title}">
         {msg desc="Header of a page telling the user their email address has been verified."}
-          Your email has been verified
+          Twój email został zweryfikowany
         {/msg}
       </h1>
     </div>
     <div class="{css firebaseui-card-content}">
       <p class="{css firebaseui-text}">
         {msg desc="Detailed info of a notice page that confirms user's email is verified"}
-          You can now sign in with your new account
+          Możesz się teraz zalogować do Twojego nowego konta
         {/msg}
       </p>
     </div>
@@ -512,14 +511,14 @@
     <div class="{css firebaseui-card-header}">
       <h1 class="{css firebaseui-title}">
         {msg desc="Header of a page telling the user that email verification has failed."}
-          Try verifying your email again
+          Spróbuj zweryfikować Swój email ponownie.
         {/msg}
       </h1>
     </div>
     <div class="{css firebaseui-card-content}">
       <p class="{css firebaseui-text}">
         {msg desc="Detailed info of a notice page that email verification failed."}
-          Your request to verify your email has expired or the link has already been used
+          Prośba o weryfikację Twojego e-maila wygasła lub link został już użyty
         {/msg}
       </p>
     </div>
@@ -543,7 +542,7 @@
       {css firebaseui-container} {css firebaseui-id-page-unrecoverable-error}">
     <div class="{css firebaseui-card-header}">
       <h1 class="{css firebaseui-title}">
-        {msg desc="Header of a notice page"}Error encountered{/msg}
+        {msg desc="Header of a notice page"}Wystąpił błąd{/msg}
       </h1>
     </div>
     <div class="{css firebaseui-card-content}">
@@ -565,20 +564,20 @@
       {css firebaseui-container} {css firebaseui-id-page-email-mismatch}">
     <form onsubmit="return false;">
       <div class="{css firebaseui-card-header}">
-        <h1 class="{css firebaseui-title}">{msg desc="Header of a sign-in page."}Sign in{/msg}</h1>
+        <h1 class="{css firebaseui-title}">{msg desc="Header of a sign-in page."}Zaloguj się{/msg}</h1>
       </div>
       <div class="{css firebaseui-card-content}">
         <h2 class="{css firebaseui-subtitle}">
           {msg desc="Message that asks the user if he wishes to continue signing in with the
                provided email or sign out from the identity provider such as Google or Facebook
                and try to sign in again with a different email."}
-            Continue with {$userEmail}?
+            Kontynuuj jako {$userEmail}?
           {/msg}
         </h2>
         <p class="{css firebaseui-text}">
           {msg desc="Message that tells the user he originally wanted to sign in with a different
               email address."}
-            You originally wanted to sign in with {$pendingEmail}
+            Początkowo chciałeś się zalogować jako {$pendingEmail}
           {/msg}
         </p>
       </div>
@@ -589,7 +588,7 @@
             {param label kind="text"}
               {msg desc="The button that confirms that the user wishes to proceed with the current
                   email."}
-                Continue
+                Kontynuuj
               {/msg}
             {/param}
           {/call}

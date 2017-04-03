@@ -20,7 +20,7 @@
 {template .errorNoWebStorage kind="text"}
   {msg desc="Error message to be displayed when the browser does not support web storage
       (localStorage and sessionStorage)."}
-    The browser you are using does not support Web Storage. Please try again in a different browser.
+    Używana przeglądarka nie obsługuje Web Storage. Spróbuj ponownie w innej przeglądarce.
   {/msg}
 {/template}
 
@@ -28,7 +28,7 @@
 /** Error message for invalid email. */
 {template .errorInvalidEmail kind="text"}
   {msg desc="Error message when the entered email is not a valid email address."}
-    That email address isn't correct
+    Ten adres e-mail jest nieprawidłowy
   {/msg}
 {/template}
 
@@ -36,7 +36,7 @@
 /** Error message for missing email. */
 {template .errorMissingEmail kind="text"}
   {msg desc="Error message when the user didn't enter an email."}
-    Enter your email address to continue
+    Wprowadź swój adres e-mail, aby kontynuować
   {/msg}
 {/template}
 
@@ -44,7 +44,7 @@
 /** Error message for missing name. */
 {template .errorMissingName kind="text"}
   {msg desc="Error message when the user didn't enter a name."}
-    Enter your account name
+    Wprowadź nazwę konta
   {/msg}
 {/template}
 
@@ -52,7 +52,7 @@
 /** Error message for missing password. */
 {template .errorMissingPassword kind="text"}
   {msg desc="Error message when the user didn't enter a password."}
-    Enter your password
+    Wprowadź hasło
   {/msg}
 {/template}
 
@@ -60,7 +60,7 @@
 /** Error message for too many account creation. */
 {template .errorTooManyRequestsCreateAccount kind="text"}
   {msg desc="Error message when too many accounts have been created from the same IP address."}
-    Too many account requests are coming from your IP address. Try again in a few minutes.
+    Zbyt wiele żądań pochodzi z Twojego adresu IP. Spróbuj ponownie za kilka minut.
   {/msg}
 {/template}
 
@@ -69,7 +69,7 @@
 {template .errorSendPasswordReset kind="text"}
   {msg desc="Error message to be displayed when the password reset code is not sent to user's
       email."}
-    Unable to send password reset code to specified email.
+    Nie można wysłać kodu resetu hasła do określonego adresu e-mail.
   {/msg}
 {/template}
 
@@ -78,7 +78,7 @@
 {template .internalError kind="text"}
   {msg desc="Error message to be displayed when the error returned from the backend is unknown
       or does not contain any information."}
-    An internal error has occurred.
+    Wystąpił błąd wewnętrzny.
   {/msg}
 {/template}
 
@@ -87,7 +87,7 @@
 {template .errorExpiredCredential kind="text"}
   {msg desc="Error message when the user takes too long to complete the sign in process. The
       Google or Facebook credential used to sign in would have expired."}
-    Your sign-in session has expired. Please try again.
+   Twoja sesja wygasła. Proszę spróbuj ponownie.
   {/msg}
 {/template}
 
@@ -96,7 +96,7 @@
 {template .errorAnonymousEmailBlockingSignIn kind="text"}
   {msg desc="Error message when the user tries to sign in but the email is used by an anonymous
       account. The user must reset their password to recover."}
-    This email already exists without any means of sign-in. Please reset the password to recover.
+    Ten e-mail już istnieje bez żadnego sposobu logowania się. Zresetuj hasło, aby je odzyskać.
   {/msg}
 {/template}
 
@@ -108,40 +108,40 @@
     {case 'auth/email-already-in-use'}
       {msg desc="Error message for when the user is trying to sign up with an email already existing
           in the database."}
-        The email address is already used by another account
+        Adres e-mail jest już używany przez inne konto
       {/msg}
     {case 'auth/requires-recent-login'}
       {call .errorLoginAgain_ /}
     {case 'auth/too-many-requests'}
       {msg desc="Error message for too many failed login attempts in a short period of time.
           Recommend that the user wait a few minutes before trying again."}
-        You have entered an incorrect password too many times. Please try again in a few minutes.
+        Hasło zostało wprowadzone zbyt często. Proszę spróbować za kilka minut.
       {/msg}
     {case 'auth/user-cancelled'}
       {msg desc="Error message for when the user refuses to grant permission to the scopes required
           to sign in through the identity provider such as Google, Facebook, etc."}
-        Please authorize the required permissions to sign in to the application
+        Upewnij się, że masz uprawnienia do logowania się do aplikacji
       {/msg}
     {case 'auth/user-not-found'}
       {msg desc="Error message for the user tries to sign in to a nonexistent account or if the user
           requests a password reset for a nonexistent account."}
-        That email address doesn't match an existing account
+        Ten adres e-mail nie pasuje do istniejącego konta
       {/msg}
     {case 'auth/user-token-expired'}
       {call .errorLoginAgain_ /}
     {case 'auth/weak-password'}
       {msg desc="Error message for when the user tries to sign in or sign up with a password that
           is too short."}
-        Strong passwords have at least 6 characters and a mix of letters and numbers
+        Silne hasła zawierają co najmniej 6 znaków, duże litery i cyfry
       {/msg}
     {case 'auth/wrong-password'}
       {msg desc="Error message for incorrect password."}
-        The email and password you entered don't match
+        Podany adres e-mail i hasło nie są zgodne
       {/msg}
     {case 'auth/network-request-failed'}
       {msg desc="Error message when a request fails due to a network error (such as timeout,
           interrupted connection or unreachable host)."}
-        A network error has occurred.
+        Wystąpił błąd sieci.
       {/msg}
   {/switch}
 {/template}
@@ -151,6 +151,6 @@
 {template .errorLoginAgain_ private="true" kind="text"}
   {msg desc="Error message for when the user has to login again to perform a specific operation
       like updating password."}
-    Please login again to perform this operation
+    Zaloguj się ponownie, aby wykonać tę operację
   {/msg}
 {/template}
