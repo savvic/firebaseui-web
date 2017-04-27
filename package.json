@@ -1,6 +1,6 @@
 {
   "name": "firebaseui",
-  "version": "0.0.0",
+  "version": "1.0.1",
   "description": "Javascript library for customizable UI on top of Firebase SDK",
   "files": [
     "dist/**",
@@ -16,7 +16,8 @@
     "demo": "npm run build && ./buildtools/run_demo.sh",
     "test": "npm run build && npm run generate-test-files && ./buildtools/run_tests.sh",
     "serve": "npm run build && npm run generate-test-files && gulp serve",
-    "generate-test-files": "./buildtools/generate_test_files.sh"
+    "generate-test-files": "./buildtools/generate_test_files.sh",
+    "prepublish": "npm run test && cp -r dist demo/public"
   },
   "test": "npm run test",
   "author": "Google",

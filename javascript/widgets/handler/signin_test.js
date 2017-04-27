@@ -77,6 +77,75 @@ function testHandleSignIn() {
 }
 
 
+function testHandleSignIn_cancelButtonClick_multipleProviders() {
+  firebaseui.auth.widget.handler.handleSignIn(app, container);
+  assertSignInPage();
+  // Click cancel.
+  clickSecondaryLink();
+  // Provider sign in page should be rendered.
+  assertProviderSignInPage();
+}
+
+
+function testHandleSignIn_cancelButtonClick_emailProviderOnly() {
+  // Simulate existing password account selected in accountchooser.com.
+  testAc.setSelectedAccount(passwordAccount);
+  app.updateConfig('signInOptions', ['password']);
+  firebaseui.auth.widget.handler.handleSignIn(
+      app, container, passwordAccount.getEmail());
+  assertSignInPage();
+  // Click cancel.
+  clickSecondaryLink();
+  // handleSignInWithEmail should be called underneath.
+  // If accountchoose.com is enabled, page will redirect to it.
+  testAuth.assertFetchProvidersForEmail(
+      [passwordAccount.getEmail()],
+      ['password']);
+  testAuth.process().then(function() {
+    assertPasswordSignInPage();
+    var emailInput = getEmailElement();
+    assertEquals(
+        passwordAccount.getEmail(), goog.dom.forms.getValue(emailInput));
+  });
+}
+
+
+function testHandleSignIn_accountLookupError() {
+  // Test when account lookup throws an error.
+  var expectedError = {
+    'code': 'auth/invalid-email',
+    'message': 'The email address is badly formatted.'
+  };
+  app.updateConfig('signInOptions', signInOptionsWithScopes);
+  firebaseui.auth.widget.handler.handleSignIn(app, container);
+  assertSignInPage();
+
+  // Now email input has 'user', which is not a valid email address.
+  var emailInput = getEmailElement();
+  // Pass an invalid email that will pass client side validation.
+  goog.dom.forms.setValue(emailInput, 'me.@google.com');
+  goog.testing.events.fireKeySequence(emailInput, goog.events.KeyCodes.ENTER);
+  assertSignInPage();
+
+  // Enter key triggers fetchProvidersForEmail.
+  goog.testing.events.fireKeySequence(emailInput, goog.events.KeyCodes.ENTER);
+
+  testAuth.assertFetchProvidersForEmail(
+      ['me.@google.com'],
+      null,
+      expectedError);
+  return testAuth.process().then(function() {
+    // Should remain on the same page.
+    assertSignInPage();
+    // Account should not be remembered.
+    assertFalse(firebaseui.auth.storage.isRememberAccount(app.getAppId()));
+    // Error message should be displayed in the info bar.
+    assertInfoBarMessage(
+        firebaseui.auth.widget.handler.common.getErrorMessage(expectedError));
+  });
+}
+
+
 function testHandleSignIn_reset() {
   // Test when reset is called after sign-in handler called.
   firebaseui.auth.widget.handler.handleSignIn(app, container);

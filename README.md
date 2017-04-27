@@ -44,8 +44,8 @@ You just need to include the following script and CSS file in the `<head>` tag
 of your page, below the initialization snippet from the Firebase Console:
 
 ```html
-<script src="https://cdn.firebase.com/libs/firebaseui/1.0.0/firebaseui.js"></script>
-<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/1.0.0/firebaseui.css" />
+<script src="https://cdn.firebase.com/libs/firebaseui/1.0.1/firebaseui.js"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/1.0.1/firebaseui.css" />
 ```
 
 ### npm Module
@@ -139,8 +139,8 @@ for a more in-depth example, showcasing a Single Page Application mode.
        * TODO(DEVELOPER): Paste the initialization snippet from:
        * Firebase Console > Overview > Add Firebase to your web app. *
        ***************************************************************************************** -->
-    <script src="https://cdn.firebase.com/libs/firebaseui/1.0.0/firebaseui.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/1.0.0/firebaseui.css" />
+    <script src="https://cdn.firebase.com/libs/firebaseui/1.0.1/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/1.0.1/firebaseui.css" />
     <script type="text/javascript">
       // FirebaseUI config.
       var uiConfig = {
@@ -453,8 +453,8 @@ FirebaseUI is displayed.
        * TODO(DEVELOPER): Paste the initialization snippet from:
        * Firebase Console > Overview > Add Firebase to your web app. *
        ***************************************************************************************** -->
-    <script src="https://cdn.firebase.com/libs/firebaseui/1.0.0/firebaseui.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/1.0.0/firebaseui.css" />
+    <script src="https://cdn.firebase.com/libs/firebaseui/1.0.1/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/1.0.1/firebaseui.css" />
     <script type="text/javascript">
       // FirebaseUI config.
       var uiConfig = {
@@ -648,19 +648,15 @@ middle of performing a sign-in flow. You should generally avoid re-rendering the
 widget in the middle of an action, but if you do, to avoid the warning, you
 should use the `reset()` method before re-rendering the widget.
 
+### FirebaseUI is broken in IE11 when deployed on a local server accessed through `localhost` (but works when deployed on a remote server)
+
+Several developers reported issues with IE11 when testing the widget integration on a server deployed locally, accessing the application through a `localhost` address. However, it doesn't impact applications deployed on a server (as you can verify in the [demo app](https://fir-ui-demo-84a6c.firebaseapp.com/)).
+
 ## Release Notes
 
-### 1.0.0
+**Latest**: https://github.com/firebase/firebaseui-web/releases/latest
 
-See the milestone [1.0.0](https://github.com/firebase/firebaseui-web/milestone/2)
-for the issues covered in this release. Below is a summary of the most important
-ones:
-
-- **FirebaseUI is now open source!** To contribute, please first create an issue
-describing either the bug observed or the feature requested. This way we can
-discuss the relevance of the feature, before you start working on it. It is also
-usually better to express the bug before working on a fix.
-- Added an option to disable Account Chooser. See: [Credential Helper](credential-helper).
+**For v1.0.0 and superior:** https://github.com/firebase/firebaseui-web/releases
 
 ### 0.5.0
 
