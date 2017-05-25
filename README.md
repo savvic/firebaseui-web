@@ -27,14 +27,20 @@ extensions.
 
 ## Table of Contents
 
-1. [Installation](#installation)
-2. [Usage instructions](#using-firebaseui-for-authentication)
-3. [Configuration](#configuration)
-4. [Customization](#customizing-firebaseui-for-authentication)
-5. [Advanced](#advanced)
-6. [Developer Setup](#developer-setup)
-7. [Known issues](#known-issues)
-8. [Release Notes](#release-notes)
+1. [Demo](#demo)
+2. [Installation](#installation)
+3. [Usage instructions](#using-firebaseui-for-authentication)
+4. [Configuration](#configuration)
+5. [Customization](#customizing-firebaseui-for-authentication)
+6. [Advanced](#advanced)
+7. [Developer Setup](#developer-setup)
+8. [Known issues](#known-issues)
+9. [Release Notes](#release-notes)
+
+## Demo
+
+Accessible here:
+[https://fir-ui-demo-84a6c.firebaseapp.com](https://fir-ui-demo-84a6c.firebaseapp.com).
 
 ## Installation
 
@@ -44,8 +50,8 @@ You just need to include the following script and CSS file in the `<head>` tag
 of your page, below the initialization snippet from the Firebase Console:
 
 ```html
-<script src="https://cdn.firebase.com/libs/firebaseui/1.0.1/firebaseui.js"></script>
-<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/1.0.1/firebaseui.css" />
+<script src="https://cdn.firebase.com/libs/firebaseui/2.0.0/firebaseui.js"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.0.0/firebaseui.css" />
 ```
 
 ### npm Module
@@ -92,13 +98,14 @@ the files within `bower_components/`:
 FirebaseUI includes the following flows:
 
 1. Interaction with Identity Providers such as Google and Facebook
-2. Sign-up and sign-in with email accounts
-3. Password reset
-4. Prevention of account duplication (activated when
+2. Phone number based authentication
+3. Sign-up and sign-in with email accounts
+4. Password reset
+5. Prevention of account duplication (activated when
 *"One account per email address"* setting is enabled in the
 [Firebase console](https://console.firebase.google.com). This setting is enabled
 by default.)
-5. [Account Chooser](https://www.accountchooser.com/learnmore.html?lang=en) for
+6. [Account Chooser](https://www.accountchooser.com/learnmore.html?lang=en) for
 remembering emails
 
 ### Configuring sign-in providers
@@ -107,6 +114,7 @@ To use FirebaseUI to authenticate users you first need to configure each
 provider you want to use in their own developer app settings. Please read the
 *Before you begin* section of Firebase Authentication at the following links:
 
+- [Phone number](https://firebase.google.com/docs/auth/web/phone-auth)
 - [Email and password](https://firebase.google.com/docs/auth/web/password-auth#before_you_begin)
 - [Google](https://firebase.google.com/docs/auth/web/google-signin#before_you_begin)
 - [Facebook](https://firebase.google.com/docs/auth/web/facebook-login#before_you_begin)
@@ -139,8 +147,8 @@ for a more in-depth example, showcasing a Single Page Application mode.
        * TODO(DEVELOPER): Paste the initialization snippet from:
        * Firebase Console > Overview > Add Firebase to your web app. *
        ***************************************************************************************** -->
-    <script src="https://cdn.firebase.com/libs/firebaseui/1.0.1/firebaseui.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/1.0.1/firebaseui.css" />
+    <script src="https://cdn.firebase.com/libs/firebaseui/2.0.0/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.0.0/firebaseui.css" />
     <script type="text/javascript">
       // FirebaseUI config.
       var uiConfig = {
@@ -151,7 +159,8 @@ for a more in-depth example, showcasing a Single Page Application mode.
           firebase.auth.FacebookAuthProvider.PROVIDER_ID,
           firebase.auth.TwitterAuthProvider.PROVIDER_ID,
           firebase.auth.GithubAuthProvider.PROVIDER_ID,
-          firebase.auth.EmailAuthProvider.PROVIDER_ID
+          firebase.auth.EmailAuthProvider.PROVIDER_ID,
+          firebase.auth.PhoneAuthProvider.PROVIDER_ID
         ],
         // Terms of service url.
         tosUrl: '<your-tos-url>'
@@ -194,6 +203,7 @@ Here is how you would track the Auth state across all your pages:
             var emailVerified = user.emailVerified;
             var photoURL = user.photoURL;
             var uid = user.uid;
+            var phoneNumber = user.phoneNumber;
             var providerData = user.providerData;
             user.getToken().then(function(accessToken) {
               document.getElementById('sign-in-status').textContent = 'Signed in';
@@ -202,6 +212,7 @@ Here is how you would track the Auth state across all your pages:
                 displayName: displayName,
                 email: email,
                 emailVerified: emailVerified,
+                phoneNumber: phoneNumber,
                 photoURL: photoURL,
                 uid: uid,
                 accessToken: accessToken,
@@ -355,6 +366,7 @@ specifying the value below.
 |Twitter           |`firebase.auth.TwitterAuthProvider.PROVIDER_ID` |
 |Github            |`firebase.auth.GithubAuthProvider.PROVIDER_ID`  |
 |Email and password|`firebase.auth.EmailAuthProvider.PROVIDER_ID`   |
+|Phone number      |`firebase.auth.PhoneAuthProvider.PROVIDER_ID`   |
 
 ### Custom scopes
 
@@ -395,6 +407,29 @@ ui.start('#firebaseui-auth-container', {
     {
       provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
       requireDisplayName: false
+    }
+  ]
+});
+```
+
+### Configure Phone Provider
+
+The `PhoneAuthProvider` can be configured with custom reCAPTCHA parameters
+whether reCAPTCHA is visible or invisible (defaults to `normal`). Refer to the
+[reCAPTCHA API docs](https://developers.google.com/recaptcha/docs/display) for
+more details. The following options are currently supported. Any other
+parameters will be ignored.
+
+```javascript
+ui.start('#firebaseui-auth-container', {
+  signInOptions = [
+    {
+      provider: firebase.auth.PhoneAuthProvider.PROVIDER_ID,
+      recaptchaParameters: {
+        type: 'image', // 'audio'
+        size: 'normal', // 'invisible' or 'compact'
+        badge: 'bottomleft' //' bottomright' or 'inline' applies to invisible.
+      }
     }
   ]
 });
@@ -453,8 +488,8 @@ FirebaseUI is displayed.
        * TODO(DEVELOPER): Paste the initialization snippet from:
        * Firebase Console > Overview > Add Firebase to your web app. *
        ***************************************************************************************** -->
-    <script src="https://cdn.firebase.com/libs/firebaseui/1.0.1/firebaseui.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/1.0.1/firebaseui.css" />
+    <script src="https://cdn.firebase.com/libs/firebaseui/2.0.0/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.0.0/firebaseui.css" />
     <script type="text/javascript">
       // FirebaseUI config.
       var uiConfig = {
@@ -488,6 +523,15 @@ FirebaseUI is displayed.
             provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
             // Whether the display name should be displayed in the Sign Up page.
             requireDisplayName: true
+          },
+          {
+            provider: firebase.auth.PhoneAuthProvider.PROVIDER_ID,
+            // Invisible reCAPTCHA with image challenge and bottom left badge.
+            recaptchaParameters: {
+              type: 'image',
+              size: 'invisible',
+              badge: 'bottomleft'
+            }
           }
         ],
         // Terms of service url.
@@ -623,6 +667,32 @@ npm run serve
 Then, all unit tests can be run at: http://localhost:4000/buildtools/all_tests.html
 You can also run tests individually by accessing each HTML file under
 `generated/tests`, for example: http://localhost:4000/generated/tests/javascript/widgets/authui_test.html
+
+### Run tests using SauceLabs
+
+*You need a [SauceLabs](https://saucelabs.com/) account to run tests on
+SauceLabs.*
+
+Go to your SauceLab account, under "My Account", and copy paste the access key.
+Now export the following variables, *in two Terminal windows*:
+
+```bash
+export SAUCE_USERNAME=<your username>
+export SAUCE_ACCESS_KEY=<the copy pasted access key>
+```
+
+ Then, in one Terminal window, start SauceConnect:
+
+ ```bash
+./buildtools/sauce_connect.sh
+```
+
+Take note of the "Tunnel Identifier" value logged in the terminal,at the top. In
+the other terminal that has the exported variables, run the tests:
+
+```bash
+npm test -- --saucelabs --tunnelIdentifier=<the tunnel identifier>
+```
 
 ## Known issues
 
